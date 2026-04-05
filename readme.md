@@ -104,8 +104,6 @@ The wireframes include three main screens:
 
 ### Models
 
-*[Table of models will be added in Unit 9]*
-
 | Model | Properties | Description |
 |-------|------------|-------------|
 | Song | trackName, artistName, albumName, duration | Represents a detected or searched song |
@@ -113,8 +111,6 @@ The wireframes include three main screens:
 | Favorite | lyricLine, songId, timestamp | Saved lyric lines (optional feature) |
 
 ### Networking
-
-*[Network requests will be documented in Unit 9]*
 
 **LRCLIB API Endpoints (from https://lrclib.net/docs):**
 
