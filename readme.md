@@ -100,8 +100,6 @@ The wireframes include three main screens:
 
 ## Schema
 
-*[This section will be completed in Unit 9]*
-
 ### Models
 
 | Model | Properties | Description |
