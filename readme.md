@@ -1,8 +1,3 @@
----
-title: Untitled
-
----
-
 # LyricLens
 
 ## Table of Contents
