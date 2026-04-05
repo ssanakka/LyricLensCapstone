@@ -45,11 +45,11 @@
 ### 2. Screen Archetypes
 
 - **Now Playing Screen**
-    - *Associated Required Story:* Auto-detect currently playing song, display synchronized lyrics in karaoke style, show "no lyrics" message when unavailable.
+    - Auto-detect currently playing song, display synchronized lyrics in karaoke style, show "no lyrics" message when unavailable.
 - **Search Screen**
-    - *Associated Required Story:* Manually search for lyrics by artist name and track title.
+    - Manually search for lyrics by artist name and track title.
 - **Settings / Connect Screen**
-    - *Associated Required Story:* Manage app permissions, toggle auto-detection, connect Spotify account (optional feature foundation).
+    - Manage app permissions, toggle auto-detection, connect Spotify account (optional feature foundation).
 
 ### 3. Navigation
 
