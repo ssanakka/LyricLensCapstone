@@ -98,14 +98,6 @@ The wireframes include three main screens:
 - Search result tap → Back to Now Playing with new lyrics
 - Back button on Search → Now Playing
 
-### [BONUS] Digital Wireframes & Mockups
-
-*[To be completed in Unit 9 - optional for bonus points]*
-
-### [BONUS] Interactive Prototype
-
-*[To be completed in Unit 9 - optional for bonus points]*
-
 ## Schema
 
 *[This section will be completed in Unit 9]*
