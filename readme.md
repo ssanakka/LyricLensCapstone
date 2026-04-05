@@ -11,7 +11,7 @@
 
 ### Description
 
-**LyricLens** is the ultimate companion for music lovers. It automatically detects music playing on your device (or from a connected Spotify account) and fetches synchronized, karaoke-style lyrics from the LRCLIB API to display them in real-time. Whether you're wearing headphones on a noisy subway, trying to sing along at a party, or finally want to settle that debate about whether it's "hold me closer, Tony Danza" - LyricLens has you covered.
+**LyricLens** is the ultimate companion for music lovers. It automatically detects music playing on your device (or from a connected Spotify account) and fetches synchronized, karaoke-style lyrics from the LRCLIB API to display them in real-time. Whether you're wearing headphones on a noisy subway or trying to sing along at a party - LyricLens has you covered.
 
 ### App Evaluation
 
