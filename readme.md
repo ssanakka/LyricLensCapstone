@@ -50,8 +50,6 @@
     - *Associated Required Story:* Manually search for lyrics by artist name and track title.
 - **Settings / Connect Screen**
     - *Associated Required Story:* Manage app permissions, toggle auto-detection, connect Spotify account (optional feature foundation).
-- **Favorites Screen** (Optional - Future Release)
-    - *Associated Optional Story:* View saved favorite lyric lines.
 
 ### 3. Navigation
 
