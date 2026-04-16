@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "B0268E95-64D2-476E-B2E6-59D4EC3DEC98"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E1768352-6581-4676-A1C4-3352857D8EA8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LyricLens/NowPlayingViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "NowPlayingViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "E1768352-6581-4676-A1C4-3352857D8EA8 - 602b6e83b9830e87"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LyricLens.NowPlayingViewController.songTitleLabel.getter : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "LyricLens.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/s3rup/Documents/IosDevTrash(deletethisgarbage)/finalproj/LyricLens/LyricLens/NowPlayingViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+               <Location
+                  uuid = "E1768352-6581-4676-A1C4-3352857D8EA8 - 33b27e3f92a9aa8b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LyricLens.NowPlayingViewController.songTitleLabel.setter : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "LyricLens.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/s3rup/Documents/IosDevTrash(deletethisgarbage)/finalproj/LyricLens/LyricLens/NowPlayingViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+               <Location
+                  uuid = "E1768352-6581-4676-A1C4-3352857D8EA8 - 6e8518270a0da97a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LyricLens.NowPlayingViewController.songTitleLabel.modify : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "LyricLens.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/s3rup/Documents/IosDevTrash(deletethisgarbage)/finalproj/LyricLens/LyricLens/NowPlayingViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+               <Location
+                  uuid = "E1768352-6581-4676-A1C4-3352857D8EA8 - d5f88eb8646b75b5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LyricLens.NowPlayingViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; LyricLens.NowPlayingViewController"
+                  moduleName = "LyricLens.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/s3rup/Documents/IosDevTrash(deletethisgarbage)/finalproj/LyricLens/LyricLens/NowPlayingViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14">
+               </Location>
+               <Location
+                  uuid = "E1768352-6581-4676-A1C4-3352857D8EA8 - 1e57ba026764cfc8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LyricLens.NowPlayingViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;LyricLens.NowPlayingViewController&gt;"
+                  moduleName = "LyricLens.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/s3rup/Documents/IosDevTrash(deletethisgarbage)/finalproj/LyricLens/LyricLens/NowPlayingViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
