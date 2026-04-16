@@ -80,7 +80,7 @@
 ## Wireframes
 
 
-<img src="https://raw.githubusercontent.com/ssanakka/LyricLensCapstone/refs/heads/main/assets/wireframe.png?token=GHSAT0AAAAAADUP73JZCOSWYCJK3OKQQLYI2OS5YRQ" width=600>
+<img src="/assets/wireframe.png" alt="Wireframe Image" width=600>
 
 **Wireframe Description:**
 
