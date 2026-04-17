@@ -20,12 +20,37 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         title = "Search"
         
+        //dismiss keyboard when tapping outside
+        //let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        //view.addGestureRecognizer(tapGesture)
+        
         resultsTableView.dataSource = self
         resultsTableView.delegate = self
         resultsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "ResultCell")
     }
+    //@objc func dismissKeyboard() {
+      //  view.endEditing(true)
+    //}
     
     @IBAction func searchButtonTapped(_ sender: UIButton) {
+        view.endEditing(true)
+        
+        // Block search if auto-detect is on
+        let autoDetectOn = UserDefaults.standard.bool(forKey: "autoDetectEnabled")
+        if autoDetectOn {
+            let alert = UIAlertController(
+                title: "Auto-Detect is On",
+                message: "Please turn off auto-detect in Settings before searching manually.",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: "Go to Settings", style: .default) { _ in
+                self.tabBarController?.selectedIndex = 2
+            })
+            present(alert, animated: true)
+            return
+        }
+        
         guard let artist = artistTextField.text, !artist.isEmpty,
               let song = songTextField.text, !song.isEmpty else {
             let alert = UIAlertController(title: "Missing Info", message: "Please enter both artist name and song title", preferredStyle: .alert)
@@ -55,6 +80,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+    // Dismiss keyboard when user starts scrolling
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        view.endEditing(true)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
@@ -66,6 +96,45 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         let artistName = result["artistName"] as? String ?? "Unknown Artist"
         cell.textLabel?.text = "\(trackName) - \(artistName)"
         return cell
+    }
+    
+    func fetchAlbumArt(trackName: String, artistName: String, completion: @escaping (UIImage?) -> Void) {
+        let searchQuery = "\(trackName) \(artistName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let urlString = "https://itunes.apple.com/search?term=\(searchQuery)&limit=1&entity=song"
+        
+        guard let url = URL(string: urlString) else {
+            completion(nil)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else {
+                completion(nil)
+                return
+            }
+            
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                   let results = json["results"] as? [[String: Any]],
+                   let firstResult = results.first,
+                   let artworkURLString = firstResult["artworkUrl100"] as? String,
+                   let artworkURL = URL(string: artworkURLString) {
+                    
+                    // Fetch the actual image
+                    URLSession.shared.dataTask(with: artworkURL) { imageData, _, _ in
+                        if let imageData = imageData, let image = UIImage(data: imageData) {
+                            completion(image)
+                        } else {
+                            completion(nil)
+                        }
+                    }.resume()
+                } else {
+                    completion(nil)
+                }
+            } catch {
+                completion(nil)
+            }
+        }.resume()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -98,6 +167,16 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             }
             if let artist = artistName {
                 nowPlayingVC.artistNameLabel.text = artist
+            }
+            
+            if let track = trackName, let artist = artistName {
+                fetchAlbumArt(trackName: track, artistName: artist) { image in
+                    DispatchQueue.main.async {
+                        if let albumArt = image {
+                            nowPlayingVC.albumArtImageView.image = albumArt
+                        }
+                    }
+                }
             }
         }
         

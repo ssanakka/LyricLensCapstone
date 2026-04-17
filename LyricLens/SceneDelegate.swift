@@ -11,42 +11,71 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+
+        let savedService = UserDefaults.standard.string(forKey: "activeMusicService") ?? "none"
+        let autoDetectOn = UserDefaults.standard.bool(forKey: "autoDetectEnabled")
+
+        if autoDetectOn && savedService == "spotify" {
+            SpotifyManager.shared.onTrackChanged = { trackName, artistName in
+                DispatchQueue.main.async {
+                    self.updateNowPlayingForSpotify(trackName: trackName, artistName: artistName)
+                }
+            }
+
+            SpotifyManager.shared.onConnectionStatusChanged = { connected in
+                DispatchQueue.main.async {
+                    self.handleSpotifyConnectionRestored(connected: connected)
+                }
+            }
+
+            if let token = UserDefaults.standard.string(forKey: "spotify_access_token"), !token.isEmpty {
+                SpotifyManager.shared.tryAutoConnect()
+            }
+        }
     }
 
-    func sceneDidDisconnect(_ scene: UIScene) {
-        // Called as the scene is being released by the system.
-        // This occurs shortly after the scene enters the background, or when its session is discarded.
-        // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+    private func getNowPlayingVC() -> NowPlayingViewController? {
+        guard let tabBar = window?.rootViewController as? UITabBarController,
+              let nav = tabBar.viewControllers?.first as? UINavigationController,
+              let vc = nav.viewControllers.first as? NowPlayingViewController else {
+            return nil
+        }
+        return vc
     }
 
-    func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+    private func handleSpotifyConnectionRestored(connected: Bool) {
+        guard let nowPlayingVC = getNowPlayingVC() else { return }
+        if connected {
+            nowPlayingVC.setSpotifyMode(enabled: true)
+            nowPlayingVC.setAppleMusicMode(enabled: false)
+            nowPlayingVC.setAutoDetectEnabled(true)
+            print("✅ Spotify session restored on launch")
+        }
     }
 
-    func sceneWillResignActive(_ scene: UIScene) {
-        // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
+    private func updateNowPlayingForSpotify(trackName: String, artistName: String) {
+        guard let nowPlayingVC = getNowPlayingVC() else { return }
+        nowPlayingVC.songTitleLabel.text = trackName
+        nowPlayingVC.artistNameLabel.text = artistName
+        nowPlayingVC.fetchLyricsForSpotifyTrack(trackName: trackName, artistName: artistName)
+        nowPlayingVC.fetchAlbumArtForSpotifyTrack(trackName: trackName, artistName: artistName)
     }
 
-    func sceneWillEnterForeground(_ scene: UIScene) {
-        // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
+    func sceneDidDisconnect(_ scene: UIScene) {}
+
+    func sceneDidBecomeActive(_ scene: UIScene) {}
+
+    func sceneWillResignActive(_ scene: UIScene) {}
+
+    func sceneWillEnterForeground(_ scene: UIScene) {}
+
+    func sceneDidEnterBackground(_ scene: UIScene) {}
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else { return }
+        print("📱 SceneDelegate received URL: \(url)")
+        SpotifyManager.shared.handleAuthCallback(url: url)
     }
-
-    func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
-    }
-
-
 }
-
