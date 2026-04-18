@@ -36,7 +36,7 @@
 
 **Optional Nice-to-have Stories**
 
-- [ ] User can connect their Spotify account to display lyrics for Spotify playback.
+- [x] User can connect their Spotify account to display lyrics for Spotify playback.
 - [ ] User can tap and hold any lyric line to save it to a personal "favorites" collection.
 - [ ] User can share a beautifully formatted lyric card (with album art) to Messages or Instagram.
 - [ ] User can access previously viewed lyrics offline (cached lyrics).
